@@ -6,13 +6,11 @@
 /*   By: eisikogl <eisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 00:06:20 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/08/14 19:26:52 by eisikogl         ###   ########.fr       */
+/*   Updated: 2022/08/19 04:41:20 by eisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "../libs/libft/libft.h"
+#include "../includes/minishell.h"
 
 int main(int argc, char **argv, char **envp)
 {
