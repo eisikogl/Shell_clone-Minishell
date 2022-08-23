@@ -3,52 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 14:37:08 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/28 17:07:06 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/04 17:53:39 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/08 17:13:35 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static int	length(long nb)
+static int	ft_nbr_len(int number)
 {
-	int	len;
+	long long	big;
+	int			i;
 
-	len = 0;
-	if (nb <= 0)
-		len = 1;
-	while (nb)
+	i = 1;
+	big = number;
+	if (big < 0)
 	{
-		nb /= 10;
-		len++;
+		i++;
+		big *= -1;
 	}
-	return (len);
+	while (big > 9)
+	{
+		big /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	char	*str;
-	size_t	i;
+	long long	big;
+	int			len;
+	char		*res;
 
-	nb = n;
-	i = length(nb);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	len = ft_nbr_len(n);
+	big = n;
+	res = malloc(sizeof(char) * (len + 1));
+	if (!res)
 		return (NULL);
-	str[i--] = '\0';
-	if (nb == 0)
-		str[0] = '0';
-	if (nb < 0)
+	res[len] = '\0';
+	if (n == 0)
+		res[0] = '0';
+	if (n < 0)
 	{
-		str[0] = '-';
-		nb = -nb;
+		res[0] = '-';
+		big *= -1;
 	}
-	while (nb > 0)
+	while (big)
 	{
-		str[i--] = (nb % 10) + 48;
-		nb /= 10;
+		res[--len] = (big % 10) + '0';
+		big /= 10;
 	}
-	return (str);
+	return (res);
 }

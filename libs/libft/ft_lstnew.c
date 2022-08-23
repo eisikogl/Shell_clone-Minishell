@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:12:45 by akalayci          #+#    #+#             */
-/*   Updated: 2022/01/03 15:21:16 by akalayci         ###   ########.tr       */
+/*   Created: 2022/01/05 16:42:07 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/06 17:03:10 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	t_list	*root;
+
+	root = (t_list *)malloc(sizeof(t_list));
+	if (!root)
+		return (NULL);
+	root->content = content;
+	root->next = NULL;
+	return (root);
 }

@@ -3,40 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 21:34:04 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/10 18:25:11 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 18:18:58 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/08 13:55:12 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int	ft_check_islong(const char *str, int i, int x)
 {
-	int		neg;
-	long	num;
-	int		i;
+	long	number;
+	long	temp;
 
-	i = 0;
-	neg = 1;
-	num = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	number = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		i++;
-	}
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
+		temp = number;
+		number *= 10;
+		number += str[i] - '0';
+		if (temp > number)
 		{
-			neg *= -1;
+			if (x == -1)
+				return (0);
+			if (x == 1)
+				return (-1);
 		}
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	return (number * x);
+}
+
+int	ft_atoi(const char *str)
+{
+	int		i;
+	int		x;
+
+	i = 0;
+	x = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		num = num * 10 + (str[i] - 48);
+		if (str[i] == '-')
+			x = -1;
 		i++;
 	}
-	return (num * neg);
+	return (ft_check_islong(str, i, x));
 }

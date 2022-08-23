@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 11:56:47 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 16:03:09 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 18:26:50 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/04 13:46:27 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void	*p;
+	void	*ptr;
 
-	p = malloc(nelem * elsize);
-	if (p == 0)
-		return (0);
-	ft_bzero(p, (nelem * elsize));
-	return (p);
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (ptr);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 11:43:55 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 16:07:09 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 17:52:32 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/07 16:16:38 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)

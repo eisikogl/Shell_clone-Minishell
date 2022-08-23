@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 18:48:00 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/08 19:04:19 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 17:40:58 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/07 14:05:35 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
+	if (c >= 97 && c <= 122)
+		return (c - 32);
 	return (c);
 }

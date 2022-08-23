@@ -1,34 +1,75 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <eisikogl@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/13 00:06:20 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/08/19 04:41:20 by eisikogl         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "minishell.h"
 
-#include "../includes/minishell.h"
-
-int main(int argc, char **argv, char **envp)
+void ignore_all_spaces(char *str, int *i)
 {
-    // char line[9999];
-    // int i = 0;
-    // while (envp[i])
-    // {
-    //     if (!ft_strncmp(envp[i], "PATH=",  5))
-    //     {
-    //         printf("%s: \n", envp[i] + 5);
-    //         line = envp[i] + 5;
-    //     }
+    while ((str[*i] == 32) || (str[*i] >= 9 && str[*i] <= 13))
+        (*i)++;
+}
 
-    //     i++;
-    //     /* code */
+char *commands(char *str)
+{
+    return NULL;
+}
+
+char *ma_parser(char *str, t_minishell minishell)
+{
+    int i = 0;
+
+    ignore_all_spaces(str, &i);
+
+    while (str[i])
+    {
+        if(str[i] == '"')
+            i++;
+        if (str[i] == '|' || str[i] == '<' || str[i] == '>' || str[i] == '<<' || str[i + 1] == ">>")
+        {
+            // if (str[i + 1] == )
+        }
+        if (ft_isalpha(str[i]))
+        {
+
+        }
+        // if (!ft_substr(str, i, 2), "cd", 2))
+        // {
+        //     printf("you win");
+        // }
+        // printf("%c", str[i]);
+        i++;
+    }
+    return NULL;
+}
+
+int main(int argc, char *argv[], char **envp)
+{
+    t_minishell minishell;
+    char *env = getenv("PATH");
+    minishell.program_name = "$ma_minisel % ";
+    // printf("%s", env);
+    int status;
+   
+    while (1)
+    {
+        minishell.line = readline(ft_strjoin(minishell.program_name, ""));
+        //printf("%s",minishell.line);
+        ma_parser(minishell.line, minishell);
+        add_history(minishell.line);
+
+        if (!ft_strncmp(minishell.line, "ls", 2))
+        {
+            printf("somone wrote LSLSLSLSLLSLSL");
+            // char cmd[] = "/bin/ls";
+            // char *argve[] = {"ls", "-l", NULL};
+            // execve(cmd, argve, NULL);
+        }
+
+    }
+    // int process;
+    // int i = 0;
+
+    // while(i < number of commands in pipeline)
+    // {
+    //     process = fork();
+
     // }
-    
-    char cmd[] = "/bin/ls";
-    char *argve[] = {"ls", "-l", NULL};
-    execve(cmd, argve, NULL);
+    return 0;
 }

@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 17:49:52 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/07 16:16:50 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 15:30:00 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/04 14:28:48 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

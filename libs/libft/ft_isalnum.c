@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 15:26:36 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/03 16:01:30 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 15:03:05 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/03 15:03:08 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-	{
+	if (ft_isdigit(c) || ft_isalpha(c))
 		return (1);
-	}
-	else
-	{	
-		return (0);
-	}
+	return (0);
 }

@@ -1,23 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <eisikogl@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 04:39:55 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/08/19 04:42:54 by eisikogl         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-# ifndef MINISHELL_H
-# define MINISHELL_H
-
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <signal.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "../libs/libft/libft.h"
 
+#include "Libft/libft.h"
 
+typedef struct s_minishell
+{
+    char *line;
+    char *program_name;
+    char **commands;
+    pid_t pid;
+} t_minishell;
 
-
-#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 10:02:07 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 16:06:16 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 17:46:01 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/03 17:50:51 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char	*ps;
-	int		i;
+	unsigned char	*str;
+	unsigned char	chr;
+	size_t			i;
 
+	str = (unsigned char *)s;
+	chr = (unsigned char)c;
 	i = 0;
-	ps = (char *)s;
-	while (ps[i])
-	{
-		if (ps[i] == (char)c)
-		{
-			return (ps + i);
-		}
+	while (str[i] != '\0' && str[i] != chr)
 		i++;
-	}
-	if (c == '\0')
-		return (&ps[i]);
+	if (str[i] == chr)
+		return ((char *)&s[i]);
 	return (NULL);
 }

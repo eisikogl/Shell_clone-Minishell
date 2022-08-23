@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 16:22:47 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 16:24:02 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/04 17:54:34 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/06 16:58:09 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int	i;
+	size_t	i;
 
+	i = 0;
 	if (!s || !f)
 		return ;
-	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
-		f(i, s + i);
+		(f)(i, &s[i]);
 		i++;
 	}
 }

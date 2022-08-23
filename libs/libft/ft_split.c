@@ -3,80 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 16:36:34 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 16:36:44 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/04 17:48:06 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/07 17:27:05 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-size_t	ft_count_strings(char const *s, char c)
+static size_t	ft_next_charset(const char *s, char c)
 {
-	int		newstr;
-	size_t	str_n;
+	size_t	i;
 
-	newstr = 0;
-	str_n = 0;
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static size_t	ft_count_words(const char *s, char c)
+{
+	char	pre_c;
+	size_t	i;
+
+	i = 0;
+	pre_c = c;
 	while (*s)
 	{
-		if (*s != c && newstr == 0)
-		{
-			newstr = 1;
-			str_n++;
-		}
-		else if (*s == c)
-			newstr = 0;
+		if (pre_c == c && *s != c)
+			i++;
+		pre_c = *s;
 		s++;
 	}
-	return (str_n);
+	return (i);
 }
 
-size_t	ft_count_chr(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	size_t	len;
+	char	**tab;
+	size_t	next_charset;
+	size_t	i;
 
-	len = 0;
-	while (*s && *s++ != c)
-		len++;
-	return (len);
-}
-
-void	ft_free_tab(char **tab, size_t n)
-{
-	if (!tab[n])
+	if (s == NULL)
+		return (NULL);
+	tab = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (tab == NULL)
+		return (NULL);
+	i = 0;
+	while (*s)
 	{
-		while (n > 0)
-			free(tab[n--]);
-		free(tab);
-	}
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**split;
-	size_t	str_n;
-	size_t	n;
-	size_t	len;
-
-	if (!s)
-		return (0);
-	str_n = ft_count_strings(s, c);
-	split = (char **)malloc(sizeof(char *) * (str_n + 1));
-	if (!split)
-		return (0);
-	n = 0;
-	while (n < str_n)
-	{
-		while (*s == c)
+		next_charset = ft_next_charset(s, c);
+		if (next_charset)
+		{
+			tab[i] = ft_substr(s, 0, next_charset);
+			s += next_charset;
+			i++;
+		}
+		else
 			s++;
-		len = ft_count_chr(s, c);
-		split[n] = (char *)malloc(sizeof(char) * (len + 1));
-		ft_free_tab(split, n);
-		ft_strlcpy(split[n], (char *)s, len + 1);
-		s = s + len;
-		n++;
 	}
-	split[str_n] = 0;
-	return (split);
+	tab[i] = NULL;
+	return (tab);
 }

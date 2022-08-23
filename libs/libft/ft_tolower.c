@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 19:05:21 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/08 19:07:42 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 17:44:52 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/07 14:00:13 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
+	if (c >= 65 && c <= 90)
+		return (c + 32);
 	return (c);
 }

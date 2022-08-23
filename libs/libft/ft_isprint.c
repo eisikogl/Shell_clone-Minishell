@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 17:42:47 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/01/09 02:43:41 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/03 15:23:23 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/03 15:27:49 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
-	{
 		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }

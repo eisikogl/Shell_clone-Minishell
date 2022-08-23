@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eisikogl <42istanbul.com.tr>               +#+  +:+       +#+        */
+/*   By: akalayci <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 14:39:05 by eisikogl          #+#    #+#             */
-/*   Updated: 2022/02/25 17:26:59 by eisikogl         ###   ########.tr       */
+/*   Created: 2022/01/04 14:00:47 by akalayci          #+#    #+#             */
+/*   Updated: 2022/01/07 15:58:46 by akalayci         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
