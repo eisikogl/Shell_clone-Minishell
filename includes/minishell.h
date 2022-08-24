@@ -10,8 +10,10 @@
 typedef struct s_minishell
 {
     char *line;
+    char *clean_line;
     char *program_name;
     char **commands;
+    int word_count;
     pid_t pid;
 } t_minishell;
 
