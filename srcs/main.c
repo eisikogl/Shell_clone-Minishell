@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void ignore_all_spaces(char *str, int *i)
 {
@@ -56,10 +56,10 @@ int main(int argc, char *argv[], char **envp)
 
         if (!ft_strncmp(minishell.line, "ls", 2))
         {
-            printf("somone wrote LSLSLSLSLLSLSL");
-            // char cmd[] = "/bin/ls";
-            // char *argve[] = {"ls", "-l", NULL};
-            // execve(cmd, argve, NULL);
+            //printf("somone wrote LSLSLSLSLLSLSL");
+            char cmd[] = "/bin/ls";
+            char *argve[] = {"ls", "-l", NULL};
+            execve(cmd, argve, NULL);
         }
 
     }
