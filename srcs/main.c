@@ -46,20 +46,36 @@ int main(int argc, char *argv[], char **envp)
     minishell.program_name = "$ma_minisel % ";
     // printf("%s", env);
     int status;
-   
+    int pid;
     while (1)
     {
+            
         minishell.line = readline(ft_strjoin(minishell.program_name, ""));
-        //printf("%s",minishell.line);
-        ma_parser(minishell.line, minishell);
         add_history(minishell.line);
 
-        if (!ft_strncmp(minishell.line, "ls", 2))
+        if ((!ft_strncmp(minishell.line, "ls", 2)))
         {
-            //printf("somone wrote LSLSLSLSLLSLSL");
-            char cmd[] = "/bin/ls";
-            char *argve[] = {"ls", "-l", NULL};
-            execve(cmd, argve, NULL);
+            pid = fork();
+            if(pid == 0)
+            {
+                char cmd[] = "/bin/ls";
+                char *argve[] = {"ls", "-l", NULL};
+                execve(cmd, argve, NULL);
+                exit(0);
+            }
+            wait(&status);
+        }
+        if ((!ft_strncmp(minishell.line, "pwd", 3)))
+        {
+            pid = fork();
+            if(pid == 0)
+            {
+                char cmd[] = "/bin/pwd";
+                char *argve[] = {"pwd", "-L", NULL};
+                execve(cmd, argve, NULL);
+                exit(0);
+            }
+            wait(&status);
         }
 
     }
