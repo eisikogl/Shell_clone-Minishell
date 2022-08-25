@@ -75,7 +75,7 @@ void envoirement(t_minishell minishell)
         wait(&status);
     }
 
-     if ((!ft_strncmp(minishell.line, "cat", 3)))
+    if ((!ft_strncmp(minishell.line, "cat", 3)))
     {
         int pid;
      
@@ -96,6 +96,50 @@ void envoirement(t_minishell minishell)
             }
             printf("\n");
     }
+
+    if ((!ft_strncmp(minishell.line, "mkdir", 5)))
+    {
+          int pid;
+     
+            int i;
+            i = 1;
+            while(i < minishell.word_count)
+            {
+                pid = fork();
+                if(pid == 0)
+                {
+                    char cmd[] = "/bin/mkdir";
+                    char *argve[] = {"mkdir", minishell.commands[i], NULL};
+                    execve(cmd, argve, NULL);
+                    exit(0);
+                }
+                wait(&status); 
+                i++;          
+            }   
+    }
+
+      if ((!ft_strncmp(minishell.line, "rmdir", 5)))
+    {
+          int pid;
+     
+            int i;
+            i = 1;
+            while(i < minishell.word_count)
+            {
+                pid = fork();
+                if(pid == 0)
+                {
+                    char cmd[] = "/bin/rmdir";
+                    char *argve[] = {"rmdir", minishell.commands[i], NULL};
+                    execve(cmd, argve, NULL);
+                    exit(0);
+                }
+                wait(&status); 
+                i++;          
+            }   
+    }
+
+
 }
 
 // void ignore_all_spaces(char *str, int *i)
@@ -109,30 +153,33 @@ void envoirement(t_minishell minishell)
 //     return NULL;
 // }
 
-// char *ma_parser(char *str, t_minishell minishell)
+// char *ma_parser(char **str, t_minishell minishell)
 // {
 //     int i = 0;
+//     int j;
 
-//     ignore_all_spaces(str, &i);
-
-//     while (str[i])
+//     while(str[i][j])
 //     {
-//         if(str[i] == '"')
-//             i++;
-//         if (str[i] == '|' || str[i] == '<' || str[i] == '>' || str[i] == '<<' || str[i + 1] == ">>")
+//         j = 0;
+//         while (str[i][j])
 //         {
-//             // if (str[i + 1] == )
-//         } 
-//         if (ft_isalpha(str[i]))
-//         {
+//             if(str[i][j] == '"')
+//                 i++;
+//             if (str[i][j] == '|' || str[i][j] == '<' || str[i][j] == '>' || str[i][j] == '<<' || str[i + 1] == ">>")
+//             {
+//                 // if (str[i + 1] == )
+//             } 
+//             if (ft_isalpha(str[i]))
+//             {
 
+//             }
+//             // if (!ft_substr(str, i, 2), "cd", 2))
+//             // {
+//             //     printf("you win");
+//             // }
+//             // printf("%c", str[i]);
+//             i++;
 //         }
-//         // if (!ft_substr(str, i, 2), "cd", 2))
-//         // {
-//         //     printf("you win");
-//         // }
-//         // printf("%c", str[i]);
-//         i++;
 //     }
 //     return NULL;
 // }
