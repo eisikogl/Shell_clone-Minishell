@@ -77,28 +77,24 @@ void envoirement(t_minishell minishell)
 
      if ((!ft_strncmp(minishell.line, "cat", 3)))
     {
-        int pid2;
-        pid = fork();
-        if(pid == 0)
-        {
+        int pid;
+     
             int i;
             i = 1;
             while(i < minishell.word_count)
             {
-                pid2 = fork();
-                if(pid2 == 0)
+                pid = fork();
+                if(pid == 0)
                 {
                     char cmd[] = "/bin/cat";
                     char *argve[] = {"cat", minishell.commands[i], NULL};
                     execve(cmd, argve, NULL);
                     exit(0);
                 }
-                wait(&status);  
+                wait(&status); 
                 i++;          
             }
-            exit(0);
-        }
-        wait(&status);
+            printf("\n");
     }
 }
 

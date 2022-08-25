@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "../libs/Libft/libft.h"
+#include "../libs/libft/libft.h"
 
 typedef struct s_minishell
 {
