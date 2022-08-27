@@ -40,9 +40,8 @@ void envoirement(t_minishell minishell)
     int status;
     int pid;
     int i;
-    char **argve;
-    i = 0;
 
+    i = 0;
     pid = fork();
     if(pid == 0)
     {   
