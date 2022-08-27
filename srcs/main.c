@@ -17,127 +17,162 @@ size_t	ft_count_words(const char *s, char c)
 	return (i);
 }
 
-char *echo_utility(t_minishell minishell)
+char **echo_utility(t_minishell minishell)
 {
     int i;
-    char *str;
+    char **str;
 
-    i = 1;
-    while (i <= minishell.word_count)
+    i = 0;
+    while (i < minishell.word_count)
     {
-        if(!(i == minishell.word_count))
-            minishell.commands[i] = ft_strjoin(minishell.commands[i]," ");
-        str = ft_strjoin(str,minishell.commands[i]);
+        str[i] = malloc(sizeof(char *) * 10);
+        str[i] = minishell.commands[i];
         i++;
     }
+    str[i] = malloc(sizeof(char *) * 10);
+    str[i] = NULL;
     return str;
 }
+
 
 void envoirement(t_minishell minishell)
 {
     int status;
     int pid;
-    if ((!ft_strncmp(minishell.line, "ls", 2)))
-    {
-        pid = fork();
-        if(pid == 0)
+    int i;
+    char **argve;
+    i = 0;
+
+    pid = fork();
+    if(pid == 0)
+    {   
+        char *cmd = ft_strjoin("/bin/",minishell.commands[0]);
+        char *argve[minishell.word_count];
+        while(i < minishell.word_count)
         {
-            char cmd[] = "/bin/ls";
-            char *argve[] = {"ls", "-l", NULL};
-            execve(cmd, argve, NULL);
-            exit(0);
+            argve[i] = minishell.commands[i];
+            i++;
         }
-        wait(&status);
+        argve[i] = NULL; 
+        execve(cmd, argve, NULL);
+        exit(0);
     }
-    if ((!ft_strncmp(minishell.line, "pwd", 3)))
-    {
-        pid = fork();
-        if(pid == 0)
-        {
-            char cmd[] = "/bin/pwd";
-            char *argve[] = {"pwd", "-L", NULL};
-            execve(cmd, argve, NULL);
-            exit(0);
-        }
-        wait(&status);
-    }
-     if ((!ft_strncmp(minishell.line, "echo", 4)))
-    {
-        pid = fork();
-        if(pid == 0)
-        {
-            char cmd[] = "/bin/echo";
-            char *argve[] = {"echo", echo_utility(minishell), NULL};
-            execve(cmd, argve, NULL);
+    wait(&status);
+
+    // while(i < minishell.word_count)
+    // {
+    //     pid = fork();
+    //     if(pid == 0)
+    //     {   
+    //         char *cmd = ft_strjoin("/bin/",minishell.commands[0]);
+    //         char *argve[] = {minishell.commands[0], echo_utility(minishell), NULL};
+    //         execve(cmd, argve, NULL);
+    //         exit(0);
+    //     }
+    //     wait(&status);
+    //     i++;
+    // }
+    // if ((!ft_strncmp(minishell.line, "ls", 2)))
+    // {
+    //     pid = fork();
+    //     if(pid == 0)
+    //     {
+    //         char cmd[] = "/bin/ls";
+    //         char *argve[] = {"ls", minishell.commands[1], NULL};
+    //         execve(cmd, argve, NULL);
+    //         exit(0);
+    //     }
+    //     wait(&status);
+    // }
+    // if ((!ft_strncmp(minishell.line, "pwd", 3)))
+    // {
+    //     pid = fork();
+    //     if(pid == 0)
+    //     {
+    //         char cmd[] = "/bin/pwd";
+    //         char *argve[] = {"pwd", "-L", NULL};
+    //         execve(cmd, argve, NULL);
+    //         exit(0);
+    //     }
+    //     wait(&status);
+    // }
+    //  if ((!ft_strncmp(minishell.line, "echo", 4)))
+    // {
+    //     pid = fork();
+    //     if(pid == 0)
+    //     {
+    //         char cmd[] = "/bin/echo";
+    //         char *argve[] = {"echo", echo_utility(minishell), NULL};
+    //         execve(cmd, argve, NULL);
             
-            exit(0);
-        }
-        wait(&status);
-    }
+    //         exit(0);
+    //     }
+    //     wait(&status);
+    // }
 
-    if ((!ft_strncmp(minishell.line, "cat", 3)))
-    {
-        int pid;
+    // if ((!ft_strncmp(minishell.line, "cat", 3)))
+    // {
+    //     int pid;
      
-            int i;
-            i = 1;
-            while(i < minishell.word_count)
-            {
-                pid = fork();
-                if(pid == 0)
-                {
-                    char cmd[] = "/bin/cat";
-                    char *argve[] = {"cat", minishell.commands[i], NULL};
-                    execve(cmd, argve, NULL);
-                    exit(0);
-                }
-                wait(&status); 
-                i++;          
-            }
-            printf("\n");
-    }
+    //         int i;
+    //         i = 1;
+    //         while(i < minishell.word_count)
+    //         {
+    //             pid = fork();
+    //             if(pid == 0)
+    //             {
+    //                 char cmd[] = "/bin/cat";
+    //                 char *argve[] = {"cat", minishell.commands[i], NULL};
+    //                 execve(cmd, argve, NULL);
+    //                 exit(0);
+    //             }
+    //             wait(&status); 
+    //             i++;          
+    //         }
+    //         printf("\n");
+    // }
 
-    if ((!ft_strncmp(minishell.line, "mkdir", 5)))
-    {
-          int pid;
+    // if ((!ft_strncmp(minishell.line, "mkdir", 5)))
+    // {
+    //       int pid;
      
-            int i;
-            i = 1;
-            while(i < minishell.word_count)
-            {
-                pid = fork();
-                if(pid == 0)
-                {
-                    char cmd[] = "/bin/mkdir";
-                    char *argve[] = {"mkdir", minishell.commands[i], NULL};
-                    execve(cmd, argve, NULL);
-                    exit(0);
-                }
-                wait(&status); 
-                i++;          
-            }   
-    }
+    //         int i;
+    //         i = 1;
+    //         while(i < minishell.word_count)
+    //         {
+    //             pid = fork();
+    //             if(pid == 0)
+    //             {
+    //                 char cmd[] = "/bin/mkdir";
+    //                 char *argve[] = {"mkdir", minishell.commands[i], NULL};
+    //                 execve(cmd, argve, NULL);
+    //                 exit(0);
+    //             }
+    //             wait(&status); 
+    //             i++;          
+    //         }   
+    // }
 
-      if ((!ft_strncmp(minishell.line, "rmdir", 5)))
-    {
-          int pid;
+    //   if ((!ft_strncmp(minishell.line, "rmdir", 5)))
+    // {
+    //       int pid;
      
-            int i;
-            i = 1;
-            while(i < minishell.word_count)
-            {
-                pid = fork();
-                if(pid == 0)
-                {
-                    char cmd[] = "/bin/rmdir";
-                    char *argve[] = {"rmdir", minishell.commands[i], NULL};
-                    execve(cmd, argve, NULL);
-                    exit(0);
-                }
-                wait(&status); 
-                i++;          
-            }   
-    }
+    //         int i;
+    //         i = 1;
+    //         while(i < minishell.word_count)
+    //         {
+    //             pid = fork();
+    //             if(pid == 0)
+    //             {
+    //                 char cmd[] = "/bin/rmdir";
+    //                 char *argve[] = {"rmdir", minishell.commands[i], NULL};
+    //                 execve(cmd, argve, NULL);
+    //                 exit(0);
+    //             }
+    //             wait(&status); 
+    //             i++;          
+    //         }   
+    // }
 
 
 }
@@ -187,6 +222,7 @@ void envoirement(t_minishell minishell)
 int main(int argc, char *argv[], char **envp)
 {
     t_minishell minishell;
+    t_list  commands;
     char *env = getenv("PATH");
     minishell.program_name = "$ma_minisel % ";
     // printf("%s", env);
